@@ -112,6 +112,7 @@ export default function Psychologists() {
       <FlatList
         data={data.data}
         contentContainerStyle={styles.list}
+        keyExtractor={(item: Psychologist) => item.psychologistId.toString()}
         renderItem={({ item }: { item: Psychologist }) => (
           <Link
             href={{
