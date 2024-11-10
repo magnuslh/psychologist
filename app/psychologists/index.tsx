@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 16,
     flexDirection: "row",
+    gap: 4,
   },
   list: {
     gap: 16,

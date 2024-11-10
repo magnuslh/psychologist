@@ -10,6 +10,7 @@ import {
 } from "react-native-safe-area-context";
 import { Button } from "@/components/Button";
 import { LinearGradient } from "expo-linear-gradient";
+import { SafeArea } from "@/components/SafeArea";
 
 export default function Psychologist() {
   const { id } = useLocalSearchParams();
@@ -34,30 +35,31 @@ export default function Psychologist() {
 
   if (isLoading) {
     return (
-      <SafeAreaView>
+      <SafeArea>
         <Loader />
-      </SafeAreaView>
+      </SafeArea>
     );
   }
   if (isError) {
     return (
-      <SafeAreaView>
+      <SafeArea>
         <Error message={"Something went wrong"} />
-      </SafeAreaView>
+      </SafeArea>
     );
   }
-  console.warn(data);
   const { firstName, lastName, thumbnail, headline, summary } = data.data;
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeArea edges={["bottom", "left", "right"]} style={styles.container}>
       <Image src={thumbnail} style={styles.image} />
       <View style={styles.info}>
         <Text style={styles.name}>{`${firstName} ${lastName}`}</Text>
         <Text style={styles.headline}>{headline}</Text>
         <Text style={styles.summary}>{summary}</Text>
-        <Button style={styles.scheduleButton}>{"Boka tid"}</Button>
       </View>
-    </SafeAreaView>
+      <View style={styles.footer}>
+        <Button>{"Boka tid"}</Button>
+      </View>
+    </SafeArea>
   );
 }
 
@@ -65,7 +67,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   image: {
     width: "100%",
     aspectRatio: 1,
@@ -90,8 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontStyle: "italic",
   },
-  scheduleButton: {
-    marginTop: 16,
-    alignSelf: "flex-start",
+  footer: {
+    padding: 16,
   },
 });

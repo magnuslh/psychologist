@@ -25,8 +25,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  pressable: {
-    borderRadius: 16,
-    padding: 16,
-  },
 });
